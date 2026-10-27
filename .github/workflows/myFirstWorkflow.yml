@@ -1,0 +1,3 @@
+name: MyFirstWorkflow
+#to get triggered on push in this repo
+on: push
