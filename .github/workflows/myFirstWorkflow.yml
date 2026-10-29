@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: single-file
-          path: .myartifact/.txt
+          path: ./myartifact.txt
       - name: Upload directory
         uses: actions/upload-artifact@v7
         with:
@@ -35,13 +35,15 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: multiple_paths_with
-          path: ./myartifact.txt
-                artifacts/
+          path: |
+               ./myartifact.txt
+               artifacts/
       - name: Upload from multiple paths
         uses: actions/upload-artifact@v7
         with:
           name: multiple_paths_with_exclusions
-          path: ./myartifact.txt
+          path: |
+                ./myartifact.txt
                 artifacts/
                 !**/hostname.txt
        
