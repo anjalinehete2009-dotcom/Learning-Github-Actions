@@ -25,7 +25,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: single-file
-          path: ./.txt
+          path: .myartifact/.txt
       - name: Upload directory
         uses: actions/upload-artifact@v7
         with:
