@@ -54,7 +54,7 @@ jobs:
          run: |
               pwd
               ls -ltr     
-      -  name: Upload single file
+      -  name: download single file
          uses: actions/download-artifact@v7
          with:
             name: single-file
