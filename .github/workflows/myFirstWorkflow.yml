@@ -22,7 +22,7 @@ jobs:
              echo 'ls -ltr' >> artifacts/list.txt
              echo 'hostname' >> artifacts/hostname.txt
       - name: Upload single file
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: single-file
           path: ./myartifact.txt
@@ -55,7 +55,7 @@ jobs:
               pwd
               ls -ltr     
       -  name: download single file
-         uses: actions/download-artifact@v7
+         uses: actions/download-artifact@v4
          with:
             name: single-file
       -  name: check files in current directory after download
