@@ -46,6 +46,20 @@ jobs:
                 ./myartifact.txt
                 artifacts/
                 !**/hostname.txt
-       
-            
+  job2:
+    name: Job2
+    runs-on: ubuntu-latest
+    steps:
+      -  name: check files in current directory
+         run: |
+              pwd
+              ls -ltr     
+      -  name: Upload single file
+         uses: actions/download-artifact@v7
+         with:
+            name: single-file
+      -  name: check files in current directory after download
+         run: |
+              pwd
+              ls -ltr           
       
