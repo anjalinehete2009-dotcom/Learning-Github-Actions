@@ -75,5 +75,5 @@ jobs:
       - name : accessing Environment variables
         run : |
             echo "[INFO] Running deployment for $ENV_TYPE with user $APP_USER"
-            echo "[INFO] Once deployed application is available on port $APP_PORT
+            echo "[INFO] Once deployed application is available on port $APP_PORT"
       
