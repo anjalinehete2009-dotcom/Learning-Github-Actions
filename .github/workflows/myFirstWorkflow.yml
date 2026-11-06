@@ -2,6 +2,15 @@ name: MyFirstWorkflow
 #to get triggered on push in this repo
 on: 
   push:  
+   branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  APP_USER : ayn
+  APP_PORT : 80
+  ENV_TYPE : dev
 jobs:
   job1:
     name: Job1
@@ -62,5 +71,9 @@ jobs:
       -  name: check files in current directory after download
          run: |
               pwd
-              ls -ltr           
+              ls -ltr    
+      - name : accessing Environment variables
+        run : |
+            echo "[INFO] Running deployment for $ENV_TYPE with user $APP_USER"
+            echo "[INFO] Once deployed application is available on port $APP_PORT"
       
