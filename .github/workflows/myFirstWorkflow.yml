@@ -99,7 +99,7 @@ jobs:
       - name : Display staging secrets
         run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}
     environment: 
-      name: Staging
+        name: Staging
  production:
     name: deployment for production
     runs-on: ubuntu-latest
