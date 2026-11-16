@@ -97,7 +97,7 @@ jobs:
       - name: Deployment to staging
         run:  echo "[INFO] Running deployment on ${{vars.HOST}} using user ${{vars.USER}}
       - name : Display staging secrets
-        run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}
+        run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}"
     environment: 
         name: Staging
  production:
@@ -107,6 +107,6 @@ jobs:
       - name: Deployment to prod
         run:  echo "[INFO] Running deployment on ${{vars.HOST}} using user ${{vars.USER}}
       - name : Display staging secrets
-        run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}
+        run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}"
     environment: 
         name: Production    
