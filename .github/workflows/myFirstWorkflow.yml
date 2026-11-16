@@ -2,6 +2,15 @@ name: MyFirstWorkflow
 #to get triggered on push in this repo
 on: 
   push:  
+   branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  APP_USER : ayn
+  APP_PORT : 80
+  ENV_TYPE : dev
 jobs:
   job1:
     name: Job1
@@ -62,5 +71,44 @@ jobs:
       -  name: check files in current directory after download
          run: |
               pwd
-              ls -ltr           
-      
+              ls -ltr    
+      - name : accessing Environment variables
+        run : |
+            echo "[INFO] Running deployment for $ENV_TYPE with user $APP_USER"
+            echo "[INFO] Once deployed application is available on port $APP_PORT"
+      - name : accessing secrets
+        run : |
+             echo "Application password is ${{ secrets.APP_PASSWORD}}"
+  job3:
+     name : Job3
+     runs-on: ubuntu-latest
+     steps:
+       - name: Refering built-in or context variable
+         run : |
+            echo "[INFO] Triggered by ${{ github.event_name}}"
+            echo "[INFO] Changes are added by ${{ github.actor}} in ${{github.head_ref}}"
+            echo "[INFO] Current step is running on ${{ runner.os}}"
+            echo "[INFO] Current job id is ${{ job.check_run_id}}"   
+ 
+  staging:
+    name: deployment for staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment to staging
+        run:  echo "[INFO] Running deployment on ${{ vars.HOST }} using user ${{ vars.USER }}"
+      - name : Display staging secrets
+        run: echo "[INFO] The password for ${{ vars.USER }} is ${{ secrets.PASSWORD }}"
+    environment: 
+       name: Staging
+    if: github.head_ref == 'dev'   
+  production:
+    name: deployment for production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment to prod
+        run:  echo "[INFO] Running deployment on ${{vars.HOST}} using user ${{vars.USER}}"
+      - name : Display staging secrets
+        run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}"
+    environment: 
+      name: Production    
+    if: github.ref == 'refs/head/main'
