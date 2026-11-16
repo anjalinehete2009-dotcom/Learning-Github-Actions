@@ -86,10 +86,10 @@ jobs:
        - name: Refering built-in or context variable
          run : |
             echo "[INFO] Triggered by ${{ github.event_name}}"
-            echo "[INFO] Changes are added by ${{ github.actor}} in ${{github.ref_name}}"
+            echo "[INFO] Changes are added by ${{ github.actor}} in ${{github.head_ref}}"
             echo "[INFO] Current step is running on ${{ runner.os}}"
             echo "[INFO] Current job id is ${{ job.check_run_id}}"   
-
+ 
   staging:
     name: deployment for staging
     runs-on: ubuntu-latest
@@ -100,6 +100,7 @@ jobs:
         run: echo "[INFO] The password for ${{ vars.USER }} is ${{ secrets.PASSWORD }}"
     environment: 
        name: Staging
+     if: github.head_ref == "dev"   
   production:
     name: deployment for production
     runs-on: ubuntu-latest
@@ -110,3 +111,4 @@ jobs:
         run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}"
     environment: 
       name: Production    
+     if: github.ref == "refs/head/main" 
