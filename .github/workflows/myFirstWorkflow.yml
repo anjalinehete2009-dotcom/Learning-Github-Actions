@@ -95,12 +95,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deployment to staging
-        run:  echo "[INFO] Running deployment on ${{vars.HOST}} using user ${{vars.USER}}"
+        run:  echo "[INFO] Running deployment on ${{ vars.HOST }} using user ${{ vars.USER }}"
       - name : Display staging secrets
-        run: echo "[INFO] The password for ${{vars.USER}} is ${{secrets.PASSWORD}}"
+        run: echo "[INFO] The password for ${{ vars.USER }} is ${{ secrets.PASSWORD }}"
     environment: 
-      name: Staging
- production:
+       name: Staging
+  production:
     name: deployment for production
     runs-on: ubuntu-latest
     steps:
